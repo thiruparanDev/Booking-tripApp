@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/t/TripToaster/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/home/t/Downloads/Enrich/TripToster/TripToaster/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
                 {
                     "source": "/home/t/.gradle/caches/transforms-3/ec6380df8d1855f3c6b1016c7f10f126/transformed/coordinatorlayout-1.1.0/res/values/values.xml",
@@ -54,6 +54,23 @@
                         "startOffsets": "40274",
                         "endColumns": "49",
                         "endOffsets": "40319"
+                    }
+                },
+                {
+                    "source": "/home/t/Downloads/Enrich/TripToster/TripToaster/android/app/build/generated/res/resValues/debug/values/gradleResValues.xml",
+                    "from": {
+                        "startLines": "6,8",
+                        "startColumns": "4,4",
+                        "startOffsets": "156,262",
+                        "endColumns": "63,68",
+                        "endOffsets": "215,326"
+                    },
+                    "to": {
+                        "startLines": "656,657",
+                        "startColumns": "4,4",
+                        "startOffsets": "41642,41706",
+                        "endColumns": "63,68",
+                        "endOffsets": "41701,41770"
                     }
                 },
                 {
@@ -114,23 +131,6 @@
                     }
                 },
                 {
-                    "source": "/home/t/TripToaster/android/app/build/generated/res/google-services/debug/values/values.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "55,199,281,385,494,614,709",
-                        "endColumns": "143,81,103,108,119,94,71",
-                        "endOffsets": "194,276,380,489,609,704,776"
-                    },
-                    "to": {
-                        "startLines": "732,737,738,739,740,741,791",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "48667,49279,49361,49465,49574,49694,57691",
-                        "endColumns": "143,81,103,108,119,94,71",
-                        "endOffsets": "48806,49356,49460,49569,49689,49784,57758"
-                    }
-                },
-                {
                     "source": "/home/t/.gradle/caches/transforms-3/01c382f9bd85f0f42d0b75c02f9662f3/transformed/jetified-flipper-0.125.0/res/values/values.xml",
                     "from": {
                         "startLines": "2,3",
@@ -167,6 +167,23 @@
                     }
                 },
                 {
+                    "source": "/home/t/Downloads/Enrich/TripToster/TripToaster/android/app/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "1",
+                        "startColumns": "4",
+                        "startOffsets": "16",
+                        "endColumns": "48",
+                        "endOffsets": "60"
+                    },
+                    "to": {
+                        "startLines": "692",
+                        "startColumns": "4",
+                        "startOffsets": "44161",
+                        "endColumns": "48",
+                        "endOffsets": "44205"
+                    }
+                },
+                {
                     "source": "/home/t/.gradle/caches/transforms-3/d35e8bbbe48baa113deb24c70d21fb63/transformed/jetified-drawee-2.6.0/res/values/values.xml",
                     "from": {
                         "startLines": "2,141",
@@ -186,22 +203,20 @@
                     }
                 },
                 {
-                    "source": "/home/t/TripToaster/android/app/src/main/res/values/styles.xml",
+                    "source": "/home/t/Downloads/Enrich/TripToster/TripToaster/android/app/build/generated/res/google-services/debug/values/values.xml",
                     "from": {
-                        "startLines": "3",
-                        "startColumns": "4",
-                        "startOffsets": "54",
-                        "endLines": "6",
-                        "endColumns": "12",
-                        "endOffsets": "267"
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,199,281,385,494,614,709",
+                        "endColumns": "143,81,103,108,119,94,71",
+                        "endOffsets": "194,276,380,489,609,704,776"
                     },
                     "to": {
-                        "startLines": "830",
-                        "startColumns": "4",
-                        "startOffsets": "60580",
-                        "endLines": "833",
-                        "endColumns": "12",
-                        "endOffsets": "60793"
+                        "startLines": "732,737,738,739,740,741,791",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "48667,49279,49361,49465,49574,49694,57691",
+                        "endColumns": "143,81,103,108,119,94,71",
+                        "endOffsets": "48806,49356,49460,49569,49689,49784,57758"
                     }
                 },
                 {
@@ -277,22 +292,22 @@
                     }
                 },
                 {
-                    "source": "/home/t/TripToaster/node_modules/react-native-splash-screen/android/build/intermediates/packaged_res/debug/values/values.xml",
+                    "source": "/home/t/Downloads/Enrich/TripToster/TripToaster/android/app/src/main/res/values/styles.xml",
                     "from": {
-                        "startLines": "6,9,12",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "193,341,481",
-                        "endLines": "8,11,14",
-                        "endColumns": "12,12,12",
-                        "endOffsets": "336,476,663"
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "54",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "267"
                     },
                     "to": {
-                        "startLines": "3034,3037,3040",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "204778,204926,205066",
-                        "endLines": "3036,3039,3042",
-                        "endColumns": "12,12,12",
-                        "endOffsets": "204921,205061,205248"
+                        "startLines": "830",
+                        "startColumns": "4",
+                        "startOffsets": "60580",
+                        "endLines": "833",
+                        "endColumns": "12",
+                        "endOffsets": "60793"
                     }
                 },
                 {
@@ -315,23 +330,6 @@
                     }
                 },
                 {
-                    "source": "/home/t/TripToaster/android/app/src/main/res/values/colors.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "46",
-                        "endOffsets": "97"
-                    },
-                    "to": {
-                        "startLines": "182",
-                        "startColumns": "4",
-                        "startOffsets": "11520",
-                        "endColumns": "46",
-                        "endOffsets": "11562"
-                    }
-                },
-                {
                     "source": "/home/t/.gradle/caches/transforms-3/711d1cc7df2a1fd8e885b1d19615cd18/transformed/jetified-react-native-0.68.5/res/values/values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,78,82,85,88,92,96,99,102,103,104,113,120,127,130,133,136,142",
@@ -351,23 +349,6 @@
                     }
                 },
                 {
-                    "source": "/home/t/TripToaster/android/app/build/generated/res/resValues/debug/values/gradleResValues.xml",
-                    "from": {
-                        "startLines": "6,8",
-                        "startColumns": "4,4",
-                        "startOffsets": "156,262",
-                        "endColumns": "63,68",
-                        "endOffsets": "215,326"
-                    },
-                    "to": {
-                        "startLines": "656,657",
-                        "startColumns": "4,4",
-                        "startOffsets": "41642,41706",
-                        "endColumns": "63,68",
-                        "endOffsets": "41701,41770"
-                    }
-                },
-                {
                     "source": "/home/t/.gradle/caches/transforms-3/bc7f74cf93855f2d2c537f3cfb31229e/transformed/transition-1.2.0/res/values/values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11",
@@ -382,6 +363,25 @@
                         "startOffsets": "37642,37682,38116,38426,38481,39729,39783,39835,39884,39945",
                         "endColumns": "39,46,42,54,46,53,51,48,60,49",
                         "endOffsets": "37677,37724,38154,38476,38523,39778,39830,39879,39940,39990"
+                    }
+                },
+                {
+                    "source": "/home/t/Downloads/Enrich/TripToster/TripToaster/node_modules/react-native-splash-screen/android/build/intermediates/packaged_res/debug/values/values.xml",
+                    "from": {
+                        "startLines": "6,9,12",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "193,341,481",
+                        "endLines": "8,11,14",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "336,476,663"
+                    },
+                    "to": {
+                        "startLines": "3034,3037,3040",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "204778,204926,205066",
+                        "endLines": "3036,3039,3042",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "204921,205061,205248"
                     }
                 },
                 {
@@ -404,20 +404,20 @@
                     }
                 },
                 {
-                    "source": "/home/t/TripToaster/android/app/src/main/res/values/strings.xml",
+                    "source": "/home/t/Downloads/Enrich/TripToster/TripToaster/android/app/src/main/res/values/colors.xml",
                     "from": {
-                        "startLines": "1",
+                        "startLines": "2",
                         "startColumns": "4",
-                        "startOffsets": "16",
-                        "endColumns": "48",
-                        "endOffsets": "60"
+                        "startOffsets": "55",
+                        "endColumns": "46",
+                        "endOffsets": "97"
                     },
                     "to": {
-                        "startLines": "692",
+                        "startLines": "182",
                         "startColumns": "4",
-                        "startOffsets": "44161",
-                        "endColumns": "48",
-                        "endOffsets": "44205"
+                        "startOffsets": "11520",
+                        "endColumns": "46",
+                        "endOffsets": "11562"
                     }
                 },
                 {

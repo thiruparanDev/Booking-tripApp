@@ -8,11 +8,14 @@ import {
   Pressable,
   TouchableHighlight,
   Image,
+  TouchableOpacity
 } from 'react-native';
+// import {TouchableOpacity} from 'react-native-gesture-handler'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-function LoginScreen() {
+
+function LoginScreen({navigation}) {
   // let list1=[[Ionicons,'logo-google'],[AntDesign,'apple1'],[AntDesign,'twitter'],[EvilIcons,'sc-facebook']]
   return (
     <View style={styles.viewStyle}>
@@ -25,39 +28,39 @@ function LoginScreen() {
         <TextInput style={styles.textInputStyle} placeholder="Password" />
 
         <View style={styles.view2Style}>
-          <TouchableHighlight
+          <TouchableOpacity
             // activeOpacity={0.6}
             style={styles.pressableStyle}
             // onPress={onPress}
           >
             <Text style={styles.pressableText}>Login</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.lineStyle} />
         <Text style={styles.text1}>Or Signup With</Text>
         <View style={styles.view4Style}>
-          <Pressable style={styles.view3Style}>
+          <TouchableOpacity style={styles.view3Style}>
             <Ionicons name="logo-google" size={40} color="black" />
-          </Pressable>
+          </TouchableOpacity>
 
-          <Pressable style={styles.view3Style}>
+          <TouchableOpacity style={styles.view3Style}>
             <AntDesign name="apple1" size={30} color="black" />
-          </Pressable>
+          </TouchableOpacity>
 
-          <Pressable style={styles.view3Style}>
+          <TouchableOpacity style={styles.view3Style}>
             <AntDesign name="twitter" size={30} color="black" />
-          </Pressable>
+          </TouchableOpacity>
 
-          <Pressable style={styles.view3Style}>
+          <TouchableOpacity style={styles.view3Style}>
             <EvilIcons name="sc-facebook" size={45} color="black" />
-          </Pressable>
+          </TouchableOpacity>
         </View>
         <View styles={styles.view5Style}>
           <Text style={styles.text2}>New to Triptosters?</Text>
-          <Pressable>
+          <TouchableOpacity onPress={()=>navigation.navigate('RegisterScreen')}>
             <Text style={styles.text2}>Register</Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </View>
     </View>

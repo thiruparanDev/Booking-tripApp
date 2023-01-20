@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/t/TripToaster/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w480dp-port-v13/values-w480dp-port-v13.xml",
+            "outputFile": "/home/t/Downloads/Enrich/TripToster/TripToaster/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w480dp-port-v13/values-w480dp-port-v13.xml",
             "map": [
                 {
                     "source": "/home/t/.gradle/caches/transforms-3/57464b4b4d61156f8e6c8bc8c6677a39/transformed/material-1.1.0/res/values-w480dp-port-v13/values-w480dp-port-v13.xml",

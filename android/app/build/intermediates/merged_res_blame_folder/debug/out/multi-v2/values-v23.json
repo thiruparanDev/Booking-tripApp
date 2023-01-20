@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/t/TripToaster/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v23/values-v23.xml",
+            "outputFile": "/home/t/Downloads/Enrich/TripToster/TripToaster/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v23/values-v23.xml",
             "map": [
                 {
                     "source": "/home/t/.gradle/caches/transforms-3/fb1c8755000a01abe5b6d59e0efa57a0/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",

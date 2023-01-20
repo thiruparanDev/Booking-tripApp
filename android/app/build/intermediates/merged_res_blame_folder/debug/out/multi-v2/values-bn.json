@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/t/TripToaster/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-bn/values-bn.xml",
+            "outputFile": "/home/t/Downloads/Enrich/TripToster/TripToaster/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-bn/values-bn.xml",
             "map": [
                 {
                     "source": "/home/t/.gradle/caches/transforms-3/960196786e0d7149c8943eb83fc2edfd/transformed/core-1.5.0/res/values-bn/values-bn.xml",
