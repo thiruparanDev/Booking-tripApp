@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "628038286623",
+    "project_id": "triptosters",
+    "storage_bucket": "triptosters.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:628038286623:android:df2dcaa6ca70ae239f842a",
+        "android_client_info": {
+          "package_name": "com.triptoaster"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "628038286623-9trv2iued1r1fegs83plah788vdrevnh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClw-_Xx_eOjNlxO6qLsyGa5KDqqIrUj_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "628038286623-9trv2iued1r1fegs83plah788vdrevnh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
