@@ -10,8 +10,8 @@ function AppNavigator() {
     return (
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown:false}}>
-          {/* <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="RegisterScreen" component={RegisterScreen} /> */}
+          {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
+          {/* <Stack.Screen name="RegisterScreen" component={RegisterScreen} /> */}
           <Stack.Screen name="HomeScreen" component={HomeScreen} />
         </Stack.Navigator>
       </NavigationContainer>

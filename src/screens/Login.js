@@ -33,7 +33,7 @@ function LoginScreen({navigation}) {
             style={styles.pressableStyle}
             // onPress={onPress}
           >
-            <Text style={styles.pressableText}>Login</Text>
+            <Text style={styles.pressableText} >Login</Text>
           </TouchableOpacity>
         </View>
 
