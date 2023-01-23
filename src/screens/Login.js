@@ -19,6 +19,7 @@ function LoginScreen({navigation}) {
   // let list1=[[Ionicons,'logo-google'],[AntDesign,'apple1'],[AntDesign,'twitter'],[EvilIcons,'sc-facebook']]
   return (
     <View style={styles.viewStyle}>
+
       <Image style={styles.logo} source={require('../assets/Images/login.png')} />
       <View style={styles.view1Style}>
         <TextInput
