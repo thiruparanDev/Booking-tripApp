@@ -9,6 +9,7 @@ MERGED from [com.facebook.flipper:flipper:0.125.0] /home/t/.gradle/caches/transf
 MERGED from [com.facebook.flipper:flipper-network-plugin:0.125.0] /home/t/.gradle/caches/transforms-3/bb2a1825bb9e99dada648d6e9c740492/transformed/jetified-flipper-network-plugin-0.125.0/AndroidManifest.xml:8:1-15:12
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.125.0] /home/t/.gradle/caches/transforms-3/171de9d8ef0e6aa4110d3c0448c0bd61/transformed/jetified-flipper-fresco-plugin-0.125.0/AndroidManifest.xml:8:1-15:12
 MERGED from [:react-native-splash-screen] /home/t/Downloads/Enrich/TripToster/TripToaster/node_modules/react-native-splash-screen/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-picker_picker] /home/t/Downloads/Enrich/TripToster/TripToaster/node_modules/@react-native-picker/picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-safe-area-context] /home/t/Downloads/Enrich/TripToster/TripToaster/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-screens] /home/t/Downloads/Enrich/TripToster/TripToaster/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-vector-icons] /home/t/Downloads/Enrich/TripToster/TripToaster/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
@@ -224,6 +225,8 @@ MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.125.0] /home/t/.gradle
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.125.0] /home/t/.gradle/caches/transforms-3/171de9d8ef0e6aa4110d3c0448c0bd61/transformed/jetified-flipper-fresco-plugin-0.125.0/AndroidManifest.xml:11:5-13:41
 MERGED from [:react-native-splash-screen] /home/t/Downloads/Enrich/TripToster/TripToaster/node_modules/react-native-splash-screen/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-splash-screen] /home/t/Downloads/Enrich/TripToster/TripToaster/node_modules/react-native-splash-screen/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-picker_picker] /home/t/Downloads/Enrich/TripToster/TripToaster/node_modules/@react-native-picker/picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-picker_picker] /home/t/Downloads/Enrich/TripToster/TripToaster/node_modules/@react-native-picker/picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-safe-area-context] /home/t/Downloads/Enrich/TripToster/TripToaster/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-safe-area-context] /home/t/Downloads/Enrich/TripToster/TripToaster/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-screens] /home/t/Downloads/Enrich/TripToster/TripToaster/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41

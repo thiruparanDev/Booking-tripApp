@@ -6,20 +6,32 @@ import {
   TextInput,
   ScrollView,
   TouchableOpacity,
-  Image
+  Image,
 } from "react-native";
-import React from "react";
+import { Picker } from "@react-native-picker/picker";
+import React, { useState } from "react";
+
+const options = [
+  { label: "Option 1", value: "option1" },
+  { label: "Option 2", value: "option2" },
+  { label: "Option 3", value: "option3" },
+  { label: "Option 4", value: "option4" },
+];
 
 function RegisterScreen() {
+  const [selectedValue, setSelectedValue] = useState("option1");
   return (
     <View style={styles.viewStyle}>
       <ScrollView>
-      <View style={styles.headerContainer}>
-        <Text style={styles.headerText}>Register</Text>
-        <View style={styles.lineStyle} />
-      </View>
-        <Image source={require('../assets/Images/blank-profile-picture-973460_960_720.png')} style={styles.image}/>
-        <Text style={[styles.textStyle,{textAlign:'center'}]}>Profile</Text>
+        <View style={styles.headerContainer}>
+          <Text style={styles.headerText}>Register</Text>
+          <View style={styles.lineStyle} />
+        </View>
+        <Image
+          source={require("../assets/Images/blank-profile-picture-973460_960_720.png")}
+          style={styles.image}
+        />
+        <Text style={[styles.textStyle, { textAlign: "center" }]}>Profile</Text>
         <TextInput style={styles.textInputStyle} placeholder="User Name" />
         <TextInput style={styles.textInputStyle} placeholder="Your Name" />
         <TextInput style={styles.textInputStyle} placeholder="Address Line 1" />
@@ -30,11 +42,22 @@ function RegisterScreen() {
           >
             Country
           </Text>
-          <Text
-            style={[styles.textInputStyle, { width: 100, textAlign: "center" }]}
-          >
-            Country
-          </Text>
+          <View style={{borderColor:'black'}}>
+            <Picker
+              selectedValue={selectedValue}
+              style={{ height: 50, width: 150,borderColor:'blue'}}
+              onValueChange={(itemValue) => setSelectedValue(itemValue)}
+            >
+              {options.map((option) => (
+                <Picker.Item
+                  key={option.value}
+                  label={option.label}
+                  value={option.value}
+                />
+              ))}
+            </Picker>
+            {/* <Text>Selected value: {selectedValue}</Text> */}
+          </View>
         </View>
         <TextInput style={styles.textInputStyle} placeholder="Mobile No" />
         <TouchableOpacity
@@ -51,25 +74,48 @@ function RegisterScreen() {
             Enter the code
           </Text>
           <View style={styles.codeBoxView}>
-          <TextInput style={[styles.textInputStyle,{width:30,margin:3,height:30}]}></TextInput>
-          <TextInput style={[styles.textInputStyle,{width:30,margin:3,height:30}]}></TextInput>
-          <TextInput style={[styles.textInputStyle,{width:30,margin:3,height:30}]}></TextInput>
-          <TextInput style={[styles.textInputStyle,{width:30,margin:3,height:30}]}></TextInput>
+            <TextInput
+              style={[
+                styles.textInputStyle,
+                { width: 30, margin: 3, height: 30 },
+              ]}
+            ></TextInput>
+            <TextInput
+              style={[
+                styles.textInputStyle,
+                { width: 30, margin: 3, height: 30 },
+              ]}
+            ></TextInput>
+            <TextInput
+              style={[
+                styles.textInputStyle,
+                { width: 30, margin: 3, height: 30 },
+              ]}
+            ></TextInput>
+            <TextInput
+              style={[
+                styles.textInputStyle,
+                { width: 30, margin: 3, height: 30 },
+              ]}
+            ></TextInput>
           </View>
         </View>
         <TouchableOpacity
           // activeOpacity={0.6}
-          style={[styles.pressableStyle,{width:70}]}
+          style={[styles.pressableStyle, { width: 70 }]}
           // onPress={onPress}
         >
           <Text style={styles.pressableText}>Confirm</Text>
         </TouchableOpacity>
         <Text style={styles.textStyle}>Create password</Text>
         <TextInput style={styles.textInputStyle} placeholder="Password" />
-        <TextInput style={styles.textInputStyle} placeholder="Confirm password" />
+        <TextInput
+          style={styles.textInputStyle}
+          placeholder="Confirm password"
+        />
         <TouchableOpacity
           // activeOpacity={0.6}
-          style={[styles.pressableStyle,{width:70}]}
+          style={[styles.pressableStyle, { width: 70 }]}
           // onPress={onPress}
         >
           <Text style={styles.pressableText}>Confirm</Text>
@@ -97,7 +143,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   textView: {
-    marginHorizontal:15,
+    marginHorizontal: 15,
     alignItems: "flex-start",
     flexDirection: "row",
     //   justifyContent:'center',
@@ -125,54 +171,61 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 1,
   },
-  codeView:{
-    marginHorizontal:15,
+  codeView: {
+    marginHorizontal: 15,
     alignItems: "center",
-    justifyContent:'space-between',
+    justifyContent: "space-between",
     flexDirection: "row",
   },
-  codeBoxView:{
-    
+  codeBoxView: {
     // width:170,
     // marginEnd:10,
-    alignItems:'flex-end',
-    flexDirection:'row',
+    alignItems: "flex-end",
+    flexDirection: "row",
     // justifyContent: 'flex-end',
   },
-  textStyle:{
-    color:'black',
-    fontSize:20,
-    marginHorizontal:15,
+  textStyle: {
+    color: "black",
+    fontSize: 20,
+    marginHorizontal: 15,
   },
-  image:{
-    height:150,
-    width:150,
-    borderRadius:75,
-    alignSelf:'center'
+  image: {
+    height: 150,
+    width: 150,
+    borderRadius: 75,
+    alignSelf: "center",
   },
-  headerContainer:{
-    paddingTop:30,
-    justifyContent:'flex-end',
+  headerContainer: {
+    paddingTop: 30,
+    justifyContent: "flex-end",
     // width:700,
-    backgroundColor:'black',
-    height:100,
-    marginBottom:10,
-    justifyContent:'center'
+    backgroundColor: "black",
+    height: 100,
+    marginBottom: 10,
+    justifyContent: "center",
   },
-  headerText:{
-    color:'white',
-    fontSize:30,
-    textAlign:'center',
+  headerText: {
+    color: "white",
+    fontSize: 30,
+    textAlign: "center",
     // backgroundColor:'blue'
   },
   lineStyle: {
-    paddingTop:0,
-    top:15,
+    marginHorizontal:20,
+    paddingTop: 0,
+    top: 15,
     borderWidth: 1.3,
-    borderColor: 'white',
+    borderColor: "white",
     // margin: 30,
-    marginBottom:20,
-    marginTop:0
+    marginBottom: 20,
+    marginTop: 0,
   },
+  pickerView:{
+    borderColor:'black',
+    backgroundColor:'blue'
+  },
+  // picker:{
+  //   alignSelf:'center'
+  // }
 });
 export default RegisterScreen;
