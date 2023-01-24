@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useState } from "react";
+import { authentication } from "../config/db";
+// import  firebase  from 'firebase/compat';
+import { signInWithEmailAndPassword, auth } from "firebase/auth";
+
 import {
   StyleSheet,
   Text,
@@ -8,33 +12,77 @@ import {
   Pressable,
   TouchableHighlight,
   Image,
-  TouchableOpacity
-} from 'react-native';
+  TouchableOpacity,
+} from "react-native";
 // import {TouchableOpacity} from 'react-native-gesture-handler'
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import Ionicons from "react-native-vector-icons/Ionicons";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import EvilIcons from "react-native-vector-icons/EvilIcons";
 
-function LoginScreen({navigation}) {
+function LoginScreen({ navigation }) {
+  // const [loginCredential, setLoginCredential] = useState({
+  //   email: "",
+  //   password: "",
+  // });
+  const [email,setEmail]=useState("")
+  const [password,setPassword]=useState("")
   // let list1=[[Ionicons,'logo-google'],[AntDesign,'apple1'],[AntDesign,'twitter'],[EvilIcons,'sc-facebook']]
+  const handleLogin = () => {
+    // const { email, password } = loginCredential;
+    if (email == "" && password == "") {
+      // this.dropDownAlertRef.alertWithType('error', 'Error', 'Please enter the Credentials..');
+      alert("Please enter credentials");
+    } else if (email == "") {
+      alert("Please enter email");
+      // this.dropDownAlertRef.alertWithType('error', 'Error', 'Please enter Email..');
+
+      return false;
+    } else if (password == "") {
+      // this.dropDownAlertRef.alertWithType('error', 'Error', 'Please enter Password..');
+      alert("Please enter password");
+      return false;
+    } else {
+      signInWithEmailAndPassword(authentication, email, password)
+        .then((userCredential) => {
+          // this.setUserGlobalID(userCredential);
+          alert("Welcome to Triptoster");
+        })
+        .catch((error) => {
+          console.log(error);
+          if (error.code == "auth/invalid-email") {
+            alert("Invalid E-mail address..!");
+          } else if (error.code == "auth/user-not-found") {
+            alert("User not found..!");
+          } else if (error.code == "auth/wrong-password") {
+            alert("Wrong password..!");
+          } else {
+            alert(error.code);
+          }
+        });
+    }
+  };
   return (
     <View style={styles.viewStyle}>
-
-      <Image style={styles.logo} source={require('../assets/Images/login.png')} />
+      <Image
+        style={styles.logo}
+        source={require("../assets/Images/login.png")}
+      />
       <View style={styles.view1Style}>
         <TextInput
           style={styles.textInputStyle}
           placeholder="Username or Mobile Number"
+          onChangeText={setEmail}
         />
-        <TextInput style={styles.textInputStyle} placeholder="Password" />
+        <TextInput style={styles.textInputStyle} placeholder="Password" onChangeText={setPassword}/>
 
         <View style={styles.view2Style}>
           <TouchableOpacity
             // activeOpacity={0.6}
             style={styles.pressableStyle}
             // onPress={onPress}
+            onPress={() => handleLogin()}
           >
-            <Text style={styles.pressableText} >Login</Text>
+            <Text style={styles.pressableText}>Login</Text>
           </TouchableOpacity>
         </View>
 
@@ -59,7 +107,9 @@ function LoginScreen({navigation}) {
         </View>
         <View styles={styles.view5Style}>
           <Text style={styles.text2}>New to Triptosters?</Text>
-          <TouchableOpacity onPress={()=>navigation.navigate('RegisterScreen')}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("RegisterScreen")}
+          >
             <Text style={styles.text2}>Register</Text>
           </TouchableOpacity>
         </View>
@@ -70,8 +120,8 @@ function LoginScreen({navigation}) {
 const styles = StyleSheet.create({
   viewStyle: {
     flex: 1,
-    justifyContent: 'center',
-    backgroundColor: 'white',
+    justifyContent: "center",
+    backgroundColor: "white",
     // alignItems: 'center',
   },
   view1Style: {
@@ -84,14 +134,14 @@ const styles = StyleSheet.create({
   // },
   view2Style: {},
   pressableStyle: {
-    backgroundColor: '#000000',
+    backgroundColor: "#000000",
     right: 5,
     margin: 12,
     width: 80,
     margin: 2,
     padding: 2,
     borderRadius: 10,
-    alignSelf: 'flex-end',
+    alignSelf: "flex-end",
     right: 20,
     top: 10,
     height: 30,
@@ -99,13 +149,13 @@ const styles = StyleSheet.create({
     // alignItems:'flex-end'
   },
   pressableText: {
-    fontWeight: 'bold',
-    color: 'white',
-    textAlign: 'center',
+    fontWeight: "bold",
+    color: "white",
+    textAlign: "center",
     margin: 1,
   },
   textInputStyle: {
-    alignSelf: 'center',
+    alignSelf: "center",
     height: 35,
     margin: 7,
     borderWidth: 1,
@@ -115,26 +165,27 @@ const styles = StyleSheet.create({
   },
   logo: {
     // flex:3,
-    position: 'absolute',
+    position: "absolute",
     top: 20,
     // height:40
-    alignSelf: 'center',
+    alignSelf: "center",
   },
   lineStyle: {
     top: 30,
     borderWidth: 1.3,
-    borderColor: 'black',
+    borderColor: "black",
     margin: 30,
-    marginBottom:70
+    marginBottom: 70,
   },
   text1: {
-    color: 'grey',
+    color: "grey",
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: "center",
   },
   view3Style: {
+    // backgroundColor:'orange',
     // flex:1,
-    alignItems: 'center',
+    alignItems: "center",
     // justifycontent:'center',
     borderRadius: 30,
     borderWidth: 1,
@@ -144,21 +195,23 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   view4Style: {
-    justifyContent: 'center',
+    justifyContent: "center",
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: "row",
     top: 3,
   },
   text2: {
     top: 80,
-    color: 'grey',
+    color: "grey",
     fontSize: 15,
-    textAlign: 'center',
+    textAlign: "center",
   },
   view5Style: {
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: 'black',
+    // flex: 1,
+    alignItems: "center",
+    // flexDirection: 'row',
+    backgroundColor: "black",
+    borderColor: "black",
   },
 });
 
