@@ -12,6 +12,8 @@ import { authentication } from "../config/db";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Picker } from "@react-native-picker/picker";
 import React, { useState } from "react";
+import {APP_URL} from '../constants/App';
+import RNFetchBlob from 'rn-fetch-blob';
 
 const options = [
   { label: "Option 1", value: "option1" },
@@ -30,10 +32,11 @@ function RegisterScreen() {
   const [mobileNo,setMobileNo] = useState("")
   const [addressLine1,setAddressLine1] = useState("")
   const [addressLine2,setAddressLine2] = useState("")
-  const [code1,setCode1] = useState("")
-  const [code2,setCode2] = useState("")
-  const [code3,setCode3] = useState("")
-  const [code4,setCode4] = useState("")
+  // const [id,setId]
+  // const [code1,setCode1] = useState("")
+  // const [code2,setCode2] = useState("")
+  // const [code3,setCode3] = useState("")
+  // const [code4,setCode4] = useState("")
 
   const handleSubmit=()=>{
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
@@ -92,32 +95,32 @@ function createUserDetails(userID){
   }, [
       { name: 'email', data: email },
       { name: 'password', data: password },
-      { name: 'user_name', data: userName },
+      { name: 'user_name', data: yourName },
       // { name: 'user_surname', data: yourName },
       { name: 'mobile_no', data: mobileNo },
-      { name: 'country_id', data: country_id+"" },
+      // { name: 'country_id', data: country_id+"" },
       { name: 'firebase_user_id', data: userID },
-      { name: 'Address', data: addressLine1+addressLine2 },
+      // { name: 'Address', data: addressLine1+addressLine2 },
   ])
-  .then(response => response.json())
-  .then((responseJson) => {
-      console.log(responseJson);
-      if(responseJson[0]=="saved"){
-          global.member_id = responseJson[1];
-          global.member_first_name = responseJson[2];
-          global.member_last_name = responseJson[3];
-          alert("Registered successfully.")
-          setTimeout(()=>{
-              this.props.navigation.navigate("MainBottomNavigator");
-          }, 2000);
-      } else {
-          this.showError("error..!");
-      }
-  })
-  .catch((error) => {
-      console.log(error);
-      this.showError("error..!");
-  });
+  .then(response => console.log(console.log(response.json())))
+    // response.json())
+  // .then((responseJson) => {
+  //     console.log(responseJson);
+  //     if(responseJson[0]=="saved"){
+  //        global.id = responseJson[1];
+  //        global.name = responseJson[2];
+  //         alert("Registered successfully.")
+  //         // setTimeout(()=>{
+  //         //     this.props.navigation.navigate("Home");
+  //         // }, 2000);
+  //     } else {
+  //         // this.showError("error..!");
+  //     }
+  // })
+  // .catch((error) => {
+  //     console.log(error);
+  //     // this.showError("error..!");
+  // });
 
 }
 }

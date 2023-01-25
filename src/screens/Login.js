@@ -61,6 +61,8 @@ function LoginScreen({ navigation }) {
         });
     }
   };
+
+  
   return (
     <View style={styles.viewStyle}>
       <Image
