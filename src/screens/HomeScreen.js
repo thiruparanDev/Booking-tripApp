@@ -233,10 +233,10 @@ const styles = StyleSheet.create({
     justifyContent:'space-around',
     alignItems:'center',
     flexDirection:'row',
-    borderWidth: 1,
+    // borderWidth: 1,
     borderRadius: 10,
     padding:0,
     backgroundColor:'grey',
-    marginBottom:10
+    // marginBottom:10
   },
 });

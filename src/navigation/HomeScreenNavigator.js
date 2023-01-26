@@ -65,7 +65,7 @@ export default function HomeScreenNavigator({navigation}) {
   return (
     <>
     <TopBar navigation={navigation}/>
-    <Stack.Navigator >
+    <Stack.Navigator screenOptions={{gestureEnableb:false}}>
       <Stack.Screen name="Home" options={{headerShown: false}} component={HomeScreen}/>
       <Stack.Screen name='Attraction' component={AttractionScreen} options={{headerShown:false}}/>
       <Stack.Screen name='Activities' component={ActivitiesScreen} options={{headerShown:false}}/>

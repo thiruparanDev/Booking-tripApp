@@ -13,7 +13,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Picker } from "@react-native-picker/picker";
 import React, { useState } from "react";
 import {APP_URL} from '../constants/App';
-import RNFetchBlob from 'rn-fetch-blob';
+// import RNFetchBlob from 'rn-fetch-blob';
 
 const options = [
   { label: "Option 1", value: "option1" },
