@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Text,
   ScrollView,
+  TouchableOpacity
   //   StatusBar,
   //   TouchableOpacity,}
 } from "react-native";
@@ -15,8 +16,9 @@ import { View } from "react-native";
 import TopBar from "./Components/TopBar";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import MainTopNavigator from "../navigation/MainTopNavigator";
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
   // const array = [
   //   {
   //     key: '1',
@@ -105,7 +107,7 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <TopBar />
+      {/* <TopBar navigation={navigation}/> */}
       {/* <Image style={styles.logo} source={require('../assets/Images/login.png')} /> */}
       <Text style={styles.text2}>Whats on you Mind?</Text>
       <View style={styles.searchBar}>
@@ -234,6 +236,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     padding:0,
-    backgroundColor:'grey'
+    backgroundColor:'grey',
+    marginBottom:10
   },
 });

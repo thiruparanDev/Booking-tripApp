@@ -1,9 +1,9 @@
 import React from "react";
-import { View, TouchableOpacity, Image } from "react-native";
+import { View, TouchableOpacity, Image,StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 // import RegisterScreen from '../screens/RegisterScreen';
 // import LoginScreen from "../screens/Login";
-import Home from "../screens/HomeScreen";
+import HomeScreenNavigator from "../navigation/HomeScreenNavigator";
 import PlanScreen from "../screens/PlanScreen";
 import MyAccountScreen from "../screens/MyAccountScreen";
 import PlaceLocaterScreen from "../screens/PlaceLocaterScreen";
@@ -12,14 +12,17 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
-
+import HotelsScreen from "../screens/exploreScreen/HotelsScreen";
+import MainTopNavigator from "./MainTopNavigator";
+// import MainTopNavigator from "./MainTopNavigator"
 
 const Tab = createBottomTabNavigator();
 
-const MainBottomNavigator = () => {
+const MainBottomNavigator = ({navigation}) => {
   return (
+
     <Tab.Navigator
-      initialRouteName="Home"
+      // initialRouteName="Plan"
       screenOptions={{
         // tabBarShowLabel: false,
         tabBarStyle: { height: "9%", paddingBottom: 10 , backgroundColor:'black'},
@@ -28,7 +31,8 @@ const MainBottomNavigator = () => {
     >
       <Tab.Screen
         name="Explore"
-        component={Home}
+        component={HomeScreenNavigator}
+        navigation={navigation}
         options={{
           tabBarIcon: ({ focused }) => (
             <View>
@@ -112,7 +116,13 @@ const MainBottomNavigator = () => {
           headerShown: false,
         }}
       />
+      
     </Tab.Navigator>
   );
 };
+const styles = StyleSheet.create({
+  scene: {
+    flex: 1,
+  },
+});
 export default MainBottomNavigator;

@@ -6,14 +6,25 @@ import {   SafeAreaView,
     StatusBar,
     TouchableOpacity,} from 'react-native'
   import React from 'react'
-  
-  const Item = ({title}) => (
-    <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
-    </View>
-  );
-  export default function HomeScreen() {
-    const DATA = ['Attraction', 'Activities', 'Tickets', 'Hotels', 'Resturants']
+  import { useNavigation } from '@react-navigation/native';
+  // import AttractionScreen from "../exploreScreen/AttractionScreen"
+  // import ActivitiesScreen from "../exploreScreen/ActivitiesScreen"
+  // import TicketsScreen from "../exploreScreen/TicketsScreen"
+  // import HotelsScreen from "../exploreScreen/HotelsScreen"
+  // import RestaurantScreen from "../exploreScreen/RestaurantScreen"
+
+
+  export default function TopBar({navigation}) {
+    // const navigation=useNavigation
+    const Item = ({title}) => (
+      <View style={styles.item}>
+          <Text style={styles.title} onPress={() => navigation.navigate(title)}>{title}</Text>
+      </View>
+    );
+  //   const DATA = [{titl:'Attraction',component:"AttractionScreen"}, 
+  //   {titl:'Activities',component:'ActivitiesScreen'},{titl:'Tickets',component:'TicketsScreen'},{titl:'Hotels',component:'HotelsScreen'},{titl:'Resturants',component:'RestaurantScreen'} 
+  // ]
+  const DATA = ['Attraction', 'Activities', 'Tickets', 'Hotels', 'Restaurants']
     return (
       // <SafeAreaView style={styles.container}>
       <View style={styles.container}>
@@ -21,7 +32,13 @@ import {   SafeAreaView,
           horizontal
           showsHorizontalScrollIndicator={false}
           data={DATA}
-          renderItem={({item}) => <Item title={item} onPress={()=>console.log("hi")}/>}
+          renderItem={({item}) => <Item title={item} />}
+          // <View style={styles.item}>
+//           {/* <TouchableOpacity
+//     onPress={() => navigation.navigate("Login")}
+//   ><Text style={styles.title} >{item.titl}</Text></TouchableOpacity> */}
+
+// // </View>}
           keyExtractor={item => item}
         />
 </View>

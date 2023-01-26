@@ -51,7 +51,7 @@
 31        android:allowBackup="false"
 31-->/home/t/Downloads/Enrich/TripToster/TripToaster/android/app/src/main/AndroidManifest.xml:11:7-34
 32        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-32-->[androidx.core:core:1.5.0] /home/t/.gradle/caches/transforms-3/960196786e0d7149c8943eb83fc2edfd/transformed/core-1.5.0/AndroidManifest.xml:24:18-86
+32-->[androidx.core:core:1.6.0] /home/t/.gradle/caches/transforms-3/99b54a32034b2a3aa002c9ba86de1a00/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
 33        android:debuggable="true"
 34        android:icon="@mipmap/ic_launcher"
 34-->/home/t/Downloads/Enrich/TripToster/TripToaster/android/app/src/main/AndroidManifest.xml:9:7-41
