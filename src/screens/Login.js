@@ -107,13 +107,14 @@ function LoginScreen({ navigation }) {
             <EvilIcons name="sc-facebook" size={45} color="black" />
           </TouchableOpacity>
         </View>
-        <View styles={styles.view5Style}>
+        <View style={styles.lastView}>
+        {/* <View styles={styles.view5Style}> */}
           <Text style={styles.text2}>New to Triptosters?</Text>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("RegisterScreen")}
-          >
-            <Text style={styles.text2}>Register</Text>
-          </TouchableOpacity>
+          {/* <TouchableOpacity    
+          > */}
+            <Text style={[styles.text2,{fontWeight:'bold'}]} onPress={() => navigation.navigate("RegisterScreen")}> Register</Text>
+          {/* </TouchableOpacity> */}
+          {/* </View> */}
         </View>
       </View>
     </View>
@@ -158,7 +159,8 @@ const styles = StyleSheet.create({
   },
   textInputStyle: {
     alignSelf: "center",
-    height: 35,
+    height:'10%',
+    // height: 35,
     margin: 7,
     borderWidth: 1,
     padding: 10,
@@ -167,13 +169,14 @@ const styles = StyleSheet.create({
   },
   logo: {
     // flex:3,
+    height:'35%',
     position: "absolute",
-    top: 20,
+    top: '4%',
     // height:40
     alignSelf: "center",
   },
   lineStyle: {
-    top: 30,
+    top: '10%',
     borderWidth: 1.3,
     borderColor: "black",
     margin: 30,
@@ -200,21 +203,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flex: 1,
     flexDirection: "row",
-    top: 3,
+    // top: 3,
   },
   text2: {
-    top: 80,
-    color: "grey",
+    top: "8%",
+    color: "black",
     fontSize: 15,
     textAlign: "center",
+    // backgroundColor:'orange'
   },
-  view5Style: {
-    // flex: 1,
-    alignItems: "center",
-    // flexDirection: 'row',
-    backgroundColor: "black",
-    borderColor: "black",
-  },
+  lastView:{
+    justifyContent:'center',
+    flexDirection: 'row',
+  }
 });
 
 export default LoginScreen;

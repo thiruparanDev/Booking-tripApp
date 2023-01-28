@@ -52,7 +52,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import {NavigationContainer} from '@react-navigation/native';
-import HomeScreen from '../screens/HomeScreen';
+import HomeScreen from '../screens/HomeScreen copy 2';
 import AttractionScreen from '../screens/exploreScreen/AttractionScreen'
 import ActivitiesScreen from '../screens/exploreScreen/ActivitiesScreen';
 import HotelsScreen from '../screens/exploreScreen/HotelsScreen';

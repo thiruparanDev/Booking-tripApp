@@ -2,6 +2,7 @@ import { StyleSheet, Text, View ,Image,TextInput,FlatList} from 'react-native'
 import React from 'react'
 import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import ExplorePageLogo from '../Components/ExplorePageLogo';
 // import TopBar from '../Components/TopBar'
 
 export default function ActivitiesScreen() {
@@ -30,10 +31,11 @@ export default function ActivitiesScreen() {
   ];
   return (
     <View style={styles.container}>
-            <Image
+      <ExplorePageLogo/> 
+            {/* <Image
         style={styles.logo}
         source={require("../../assets/Images/login.png")}
-      />
+      /> */}
       <Text style={styles.text2}>Whats on you Mind?</Text>
       <View style={styles.searchBar}>
         <AntDesign name="search1" size={18} color="black" />

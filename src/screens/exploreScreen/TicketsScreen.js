@@ -2,7 +2,7 @@
 // import { StyleSheet, Text, View ,Image,TextInput,FlatList} from 'react-native'
 import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-
+import ExplorePageLogo from '../Components/ExplorePageLogo';
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Image, Button, ScrollView ,TextInput,TouchableOpacity} from 'react-native';
 
@@ -42,10 +42,7 @@ export default function TicketsScreen(){
 
   return (
     <View style={styles.container}>
-            <Image
-        style={styles.logo}
-        source={require("../../assets/Images/login.png")}
-      />
+      <ExplorePageLogo/> 
       <Text style={styles.text2}>Whats on you Mind?</Text>
       <View style={styles.searchBar}>
         <AntDesign name="search1" size={18} color="black" />
@@ -81,7 +78,7 @@ export default function TicketsScreen(){
 const styles = {
   container:{
     backgroundColor:'white',
-    marginBottom:270
+    marginBottom:'55%'
   
   },
   logo:{

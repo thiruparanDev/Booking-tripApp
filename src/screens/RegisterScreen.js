@@ -7,13 +7,14 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
+
 } from "react-native";
 import { authentication } from "../config/db";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Picker } from "@react-native-picker/picker";
 import React, { useState } from "react";
 import {APP_URL} from '../constants/App';
-// import RNFetchBlob from 'rn-fetch-blob';
+import RNFetchBlob from 'rn-fetch-blob';
 
 const options = [
   { label: "Option 1", value: "option1" },
@@ -23,6 +24,7 @@ const options = [
 ];
 
 function RegisterScreen() {
+
   const [selectedValue, setSelectedValue] = useState("option1");
   const [password,setPassword] = useState("")
   const [confirmPassword,setConfirmPassword] = useState("")
@@ -37,7 +39,8 @@ function RegisterScreen() {
   // const [code2,setCode2] = useState("")
   // const [code3,setCode3] = useState("")
   // const [code4,setCode4] = useState("")
-
+  const [id,setId]=useState("")
+  const [name,setName]=useState("")
   const handleSubmit=()=>{
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
     if(reg.test(email) == false){
@@ -73,6 +76,7 @@ function RegisterScreen() {
 }else {
     createUserWithEmailAndPassword(authentication, email,password)
     .then((userCredential) => {
+        // console.log(userCredential.user.uid);
         createUserDetails(userCredential.user.uid);
     })
     .catch((error) => {
@@ -82,10 +86,28 @@ function RegisterScreen() {
         if (error.code == 'auth/email-already-in-use') {
             alert("Email already in use..!");
         } else {
-            alert(error.code);
+            alert(error);
         }
     });
 }
+
+// function createUserDetails(userID){
+//   fetch(APP_URL+'register',{
+//     method:'POST',
+//     headers:{
+//       // 'Authorization:"Bearer access-token",
+//       'Accept':'application/json',
+//       'Content-Type':'application/json',
+//     },
+//     body:JSON.stringify({
+//       email:email,
+//       // password:password,
+//       name:yourName,
+//       mobile_no:mobileNo,
+//       firebase_user_id:userID
+//     })
+//   }).then(response.json()).then((responseJson)=>{console.log(responseJson)})
+// }
 
 function createUserDetails(userID){
   RNFetchBlob.fetch('POST', APP_URL+'register', {
@@ -95,35 +117,37 @@ function createUserDetails(userID){
   }, [
       { name: 'email', data: email },
       { name: 'password', data: password },
-      { name: 'user_name', data: yourName },
+      { name: 'name', data: yourName },
       // { name: 'user_surname', data: yourName },
       { name: 'mobile_no', data: mobileNo },
       // { name: 'country_id', data: country_id+"" },
       { name: 'firebase_user_id', data: userID },
       // { name: 'Address', data: addressLine1+addressLine2 },
   ])
-  .then(response => console.log(console.log(response.json())))
-    // response.json())
-  // .then((responseJson) => {
-  //     console.log(responseJson);
-  //     if(responseJson[0]=="saved"){
-  //        global.id = responseJson[1];
-  //        global.name = responseJson[2];
-  //         alert("Registered successfully.")
-  //         // setTimeout(()=>{
-  //         //     this.props.navigation.navigate("Home");
-  //         // }, 2000);
-  //     } else {
-  //         // this.showError("error..!");
-  //     }
-  // })
-  // .catch((error) => {
-  //     console.log(error);
-  //     // this.showError("error..!");
-  // });
+  .then(response => console.log(console.log(response.text())))
+  //   response.json())
+  .then((responseJson) => {
+      // console.log(JSON.stringify(responseJson));
+      // if(responseJson[0]=="saved"){
+      //   // //  global.id = responseJson[1];
+      //   // //  global.name = responseJson[2];
+      //   // setId(responseJson[1])
+      //   // setName(responseJson[2])
+      //   //   alert("Registered successfully.")
+      //   //   setTimeout(()=>{
+      //   //       this.props.navigation.navigate("Home");
+      //   //   }, 2000);
+      // } else {
+      //     // this.showError("error..!");
+      // }
+  })
+  .catch((error) => {
+      console.log(error);
+      // this.showError("error..!");
+  });
+  }
+}
 
-}
-}
   return (
     <View style={styles.viewStyle}>
       <ScrollView>
@@ -141,6 +165,7 @@ function createUserDetails(userID){
         <TextInput style={styles.textInputStyle} placeholder="Your Name" onChangeText={setYourName}/>
         <TextInput style={styles.textInputStyle} placeholder="Address Line 1" onChangeText={setAddressLine1}/>
         <TextInput style={styles.textInputStyle} placeholder="Address Line 2" onChangeText={setAddressLine2}/>
+        {/* <TextInput style={styles.textInputStyle} placeholder="Address Line 2" onChangeText={value=>setObj({...obj,email:value})}/> */}
         <View style={styles.textView}>
           <Text
             style={[styles.textInputStyle, { width: 100, textAlign: "center" }]}
@@ -226,6 +251,7 @@ function createUserDetails(userID){
         >
           <Text style={styles.pressableText} onPress={()=>{handleSubmit()}}>Confirm</Text>
         </TouchableOpacity>
+        {/* <Select>hi</Select> */}
       </ScrollView>
     </View>
   );

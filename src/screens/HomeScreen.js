@@ -17,6 +17,7 @@ import TopBar from "./Components/TopBar";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import MainTopNavigator from "../navigation/MainTopNavigator";
+// import api from "../api.json"
 
 export default function HomeScreen({navigation}) {
   // const array = [
@@ -104,7 +105,6 @@ export default function HomeScreen({navigation}) {
       },
     },
   ];
-
   return (
     <View style={styles.container}>
       {/* <TopBar navigation={navigation}/> */}
