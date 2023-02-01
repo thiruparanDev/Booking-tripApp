@@ -16,9 +16,9 @@ function AppNavigator() {
       <NavigationContainer>
         <Stack.Navigator >
           {/* <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown:false}}/> */}
-           <Stack.Screen name="MainBottomNavigator" options={{headerShown: false}} component={MainBottomNavigator}/>
-          {/* <Stack.Screen name="Login" component={LoginScreen} options={{headerShown:false}}/> */}
+          <Stack.Screen name="Login" component={LoginScreen} options={{headerShown:false}}/>
           <Stack.Screen name="RegisterScreen" component={RegisterScreen} options={{headerShown:false}}/>
+           <Stack.Screen name="MainBottomNavigator" options={{headerShown: false}} component={MainBottomNavigator}/>
           {/* <Stack.Screen name="Attraction" component={AttractionScreen} options={{headerShown:false}} /> */}
           {/* <Stack.Screen name="Activities" component={ActivitiesScreen} options={{headerShown:false}}/> */}
           {/* <Stack.Screen name="Hotels" component={HotelsScreen} options={{headerShown:false}}/> */}

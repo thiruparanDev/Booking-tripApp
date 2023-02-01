@@ -44,7 +44,7 @@ function LoginScreen({ navigation }) {
     } else {
       signInWithEmailAndPassword(authentication, email, password)
         .then((userCredential) => {
-          // this.setUserGlobalID(userCredential);
+          //setUserGlobalID(userCredential);
           alert("Welcome to Triptoster");
         })
         .catch((error) => {
@@ -61,6 +61,33 @@ function LoginScreen({ navigation }) {
         });
     }
   };
+  function setUserGlobalID(userCredential){
+
+    fetch(APP_URL + 'get_customer_id', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            firebase_user_id: userCredential.user.uid,
+        })
+    })
+    .then(response => response.json())      
+    .then((responseJson) => {
+        console.log("user_id = "+responseJson.id);
+        global.member_id = responseJson.id;
+        global.member_first_name = responseJson.first_name;
+        global.member_last_name = responseJson.last_name;
+        global.member_profile_photo = responseJson.profile_photo;
+        // this.props.navigation.navigate("MainBottomNavigator");
+    })
+    .catch((error) => {
+        console.log(error);
+        // this.showError(error.code);
+    });
+
+}
 
   
   return (

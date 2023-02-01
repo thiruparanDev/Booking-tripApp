@@ -12,9 +12,27 @@ import {
 import { authentication } from "../config/db";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Picker } from "@react-native-picker/picker";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {APP_URL} from '../constants/App';
 import RNFetchBlob from 'rn-fetch-blob';
+// import {apiCall} from "./Components/ApiCall";
+
+
+// const apiCall = (url,method,obj)=>{
+//   fetch(APP_URL+url,{
+//     method:method,
+//     headers:{
+//       // 'Authorization:"Bearer access-token",
+//       'Accept':'application/json',
+//       'Content-Type':'application/json',
+//     },
+//     body:JSON.stringify(obj)
+//   }).then(response => response.json())
+//   .then((responseJson)=>{
+//     console.log(responseJson)
+//   }).catch(error => console.error(error));
+// }
+
 
 const options = [
   { label: "Option 1", value: "option1" },
@@ -23,7 +41,10 @@ const options = [
   { label: "Option 4", value: "option4" },
 ];
 
-function RegisterScreen() {
+function RegisterScreen({navigation}) {
+  // useEffect(()=>{}
+  //   getData();
+  // },[]);
 
   const [selectedValue, setSelectedValue] = useState("option1");
   const [password,setPassword] = useState("")
@@ -73,7 +94,10 @@ function RegisterScreen() {
 }else if(mobileNo == "") {
   alert("Please enter Phone number..!");
   return false;
-}else {
+}else if(isNaN(mobileNo)){
+  alert("Please enter a number")
+}
+else {
     createUserWithEmailAndPassword(authentication, email,password)
     .then((userCredential) => {
         // console.log(userCredential.user.uid);
@@ -90,64 +114,121 @@ function RegisterScreen() {
         }
     });
 }
+// const userDetails = 
+//   {
+//     email:email,
+//     password:password,
+//     // name:yourName,
+//     phone:mobileNo,
+//     country_calling_code:"0094",
+//     firebase_user_id:""
+//   }
+
+// const createUserDetails=(userId)=>{
+//   // console.log(userId)
+//   apiCall('register','POST',{...userDetails, firebase_user_id:userId})
+
+function createUserDetails(userID){
+  fetch(APP_URL+'register',{
+    method:'POST',
+    headers:{
+      // 'Authorization:"Bearer access-token",
+      'Accept':'application/json',
+      'Content-Type':'application/json',
+    },
+    body:JSON.stringify({
+      email:email,
+      password:password,
+      // name:yourName,
+      phone:mobileNo,
+      country_calling_code:"0094",
+      firebase_user_id:userID
+    })
+  }).then(response => response.json())
+  .then((responseJson) => {
+          console.log(JSON.stringify(responseJson));
+          if(responseJson[0]=="saved"){
+             global.id = responseJson[1];
+             global.name = responseJson[2];
+            // setId(responseJson[1])
+            // setName(responseJson[2])
+              alert("Registered successfully. Welcome to TripToster")
+              setTimeout(()=>{
+                  navigation.navigate("MainBottomNavigator");
+              }, 2000);
+          } else {
+            console.log("Not successful")
+              // this.showError("error..!");
+          }
+      })
+      .catch((error) => {
+          console.log(error);
+          // this.showError("error..!");
+      });
+      }
+// }
 
 // function createUserDetails(userID){
-//   fetch(APP_URL+'register',{
-//     method:'POST',
+//   RNFetchBlob.fetch('POST', APP_URL+'register', {
+//       Authorization: "Bearer access-token",
+//       otherHeader: "foo",
+//       'Content-Type': 'multipart/form-data',
+//   }, [
+//       { name: 'email', data: email },
+//       { name: 'password', data: password },
+//       { name: 'name', data: yourName },
+//       // { name: 'user_surname', data: yourName },
+//       { name: 'mobile_no', data: mobileNo },
+//       // { name: 'country_id', data: country_id+"" },
+//       { name: 'firebase_user_id', data: userID },
+//       // { name: 'Address', data: addressLine1+addressLine2 },
+//   ])
+//   .then(response => response.json())
+//   .then((responseJson)=>{
+//     console.log(responseJson)
+//   })
+//   //   response.json())
+//   // .then((responseJson) => {
+//       // console.log(JSON.stringify(responseJson));
+//       // if(responseJson[0]=="saved"){
+//       //   // //  global.id = responseJson[1];
+//       //   // //  global.name = responseJson[2];
+//       //   // setId(responseJson[1])
+//       //   // setName(responseJson[2])
+//       //   //   alert("Registered successfully.")
+//       //   //   setTimeout(()=>{
+//       //   //       this.props.navigation.navigate("Home");
+//       //   //   }, 2000);
+//       // } else {
+//       //     // this.showError("error..!");
+//       // }
+//   // })
+//   .catch((error) => {
+//       console.log(error);
+//       // this.showError("error..!");
+//   });
+//   }
+}
+// function getData(){
+//   fetch(APP_URL+'data',{
+//     method:'GET',
 //     headers:{
 //       // 'Authorization:"Bearer access-token",
 //       'Accept':'application/json',
 //       'Content-Type':'application/json',
 //     },
-//     body:JSON.stringify({
-//       email:email,
-//       // password:password,
-//       name:yourName,
-//       mobile_no:mobileNo,
-//       firebase_user_id:userID
-//     })
-//   }).then(response.json()).then((responseJson)=>{console.log(responseJson)})
+//     // body:JSON.stringify({
+//     //   email:email,
+//     //   // password:password,
+//     //   name:yourName,
+//     //   mobile_no:mobileNo,
+//     //   firebase_user_id:userID
+//     // })
+//   }).then(response => response.json())
+//   .then((responseJson)=>{
+//     console.log(responseJson)
+//   }).catch(error => console.error(error));
 // }
-
-function createUserDetails(userID){
-  RNFetchBlob.fetch('POST', APP_URL+'register', {
-      Authorization: "Bearer access-token",
-      otherHeader: "foo",
-      'Content-Type': 'multipart/form-data',
-  }, [
-      { name: 'email', data: email },
-      { name: 'password', data: password },
-      { name: 'name', data: yourName },
-      // { name: 'user_surname', data: yourName },
-      { name: 'mobile_no', data: mobileNo },
-      // { name: 'country_id', data: country_id+"" },
-      { name: 'firebase_user_id', data: userID },
-      // { name: 'Address', data: addressLine1+addressLine2 },
-  ])
-  .then(response => console.log(console.log(response.text())))
-  //   response.json())
-  .then((responseJson) => {
-      // console.log(JSON.stringify(responseJson));
-      // if(responseJson[0]=="saved"){
-      //   // //  global.id = responseJson[1];
-      //   // //  global.name = responseJson[2];
-      //   // setId(responseJson[1])
-      //   // setName(responseJson[2])
-      //   //   alert("Registered successfully.")
-      //   //   setTimeout(()=>{
-      //   //       this.props.navigation.navigate("Home");
-      //   //   }, 2000);
-      // } else {
-      //     // this.showError("error..!");
-      // }
-  })
-  .catch((error) => {
-      console.log(error);
-      // this.showError("error..!");
-  });
-  }
-}
-
   return (
     <View style={styles.viewStyle}>
       <ScrollView>
@@ -168,7 +249,7 @@ function createUserDetails(userID){
         {/* <TextInput style={styles.textInputStyle} placeholder="Address Line 2" onChangeText={value=>setObj({...obj,email:value})}/> */}
         <View style={styles.textView}>
           <Text
-            style={[styles.textInputStyle, { width: 100, textAlign: "center" }]}
+            style={[styles.textInputStyle, { width: 100, textAlign: "center" ,marginLeft:15}]}
           >
             Country
           </Text>
@@ -199,7 +280,7 @@ function createUserDetails(userID){
         </TouchableOpacity>
         <View style={styles.codeView}>
           <Text
-            style={[styles.textInputStyle, { width: 150, textAlign: "center" }]}
+            style={[styles.textInputStyle, { width: 150, textAlign: "center",marginLeft:15 }]}
           >
             Enter the code
           </Text>
