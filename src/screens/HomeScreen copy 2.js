@@ -7,19 +7,29 @@ import {
   StyleSheet,
   Text,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
   //   StatusBar,
   //   TouchableOpacity,}
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import TopBar from "./Components/TopBar";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import MainTopNavigator from "../navigation/MainTopNavigator";
+import { getAuth } from "firebase/auth";
+import { APP_URL } from "../constants/App";
+import { apiCall } from "../Utils";
 // import api from "../api.json"
 
-export default function HomeScreen({navigation}) {
+export default function HomeScreen({ navigation }) {
+  useEffect(() => {
+    getMemberId();
+  }, []);
+  const [member, setMember] = useState({
+    memberId: "",
+    email: "",
+  });
   // const array = [
   //   {
   //     key: '1',
@@ -37,75 +47,102 @@ export default function HomeScreen({navigation}) {
     {
       id: "1",
       mainHeading: "Attraction",
-      subItems: [{
-        image: require("../assets/Images/Home_images/image1.png"),
-        heading: "Heading 1",
-        description: "Description 1",
-      },
-      {
-        image: require("../assets/Images/Home_images/image1.png"),
-        heading: "Heading 2",
-        description: "Description 2",
-      }]
+      subItems: [
+        {
+          image: require("../assets/Images/Home_images/image1.png"),
+          heading: "Heading 1",
+          description: "Description 1",
+        },
+        {
+          image: require("../assets/Images/Home_images/image1.png"),
+          heading: "Heading 2",
+          description: "Description 2",
+        },
+      ],
     },
     {
       id: "2",
       mainHeading: "Activities",
-      subItems:[ {
-        image: require("../assets/Images/Home_images/image1.png"),
-        heading: "Heading 3",
-        description: "Description 3",
-      },
-    {
-        image: require("../assets/Images/Home_images/image1.png"),
-        heading: "Heading 4",
-        description: "Description 4",
-      }]
+      subItems: [
+        {
+          image: require("../assets/Images/Home_images/image1.png"),
+          heading: "Heading 3",
+          description: "Description 3",
+        },
+        {
+          image: require("../assets/Images/Home_images/image1.png"),
+          heading: "Heading 4",
+          description: "Description 4",
+        },
+      ],
     },
     {
       id: "3",
       mainHeading: "Tickets",
-      subItems: [{
-        image: require("../assets/Images/Home_images/image1.png"),
-        heading: "Heading 5",
-        description: "Description 5",
-      },
-      {
-        image: require("../assets/Images/Home_images/image1.png"),
-        heading: "Heading 6",
-        description: "Description 6",
-      }]
+      subItems: [
+        {
+          image: require("../assets/Images/Home_images/image1.png"),
+          heading: "Heading 5",
+          description: "Description 5",
+        },
+        {
+          image: require("../assets/Images/Home_images/image1.png"),
+          heading: "Heading 6",
+          description: "Description 6",
+        },
+      ],
     },
     {
       id: "4",
       mainHeading: "Hotels",
-      subItems: [{
-        image: require("../assets/Images/Home_images/image1.png"),
-        heading: "Heading 7",
-        description: "Description 7",
-      },
-       {
-        image: require("../assets/Images/Home_images/image1.png"),
-        heading: "Heading 8",
-        description: "Description 8",
-      },]
+      subItems: [
+        {
+          image: require("../assets/Images/Home_images/image1.png"),
+          heading: "Heading 7",
+          description: "Description 7",
+        },
+        {
+          image: require("../assets/Images/Home_images/image1.png"),
+          heading: "Heading 8",
+          description: "Description 8",
+        },
+      ],
     },
     {
       id: "5",
       mainHeading: "Restaurants",
-      subItems:[{
-        image: require("../assets/Images/Home_images/image1.png"),
-        heading: "Heading 9",
-        description: "Description 9",
-      },
-      {
-        image: require("../assets/Images/Home_images/image1.png"),
-        heading: "Heading 10",
-        description: "Description 10",
-      }]
-    }
+      subItems: [
+        {
+          image: require("../assets/Images/Home_images/image1.png"),
+          heading: "Heading 9",
+          description: "Description 9",
+        },
+        {
+          image: require("../assets/Images/Home_images/image1.png"),
+          heading: "Heading 10",
+          description: "Description 10",
+        },
+      ],
+    },
   ];
 
+
+
+  async function getMemberId() {
+    const auth = getAuth();
+    const firebaseUserID = auth.currentUser.uid;
+    await apiCall('getCustomerId','POST',{firebase_user_id:firebaseUserID})
+      .then((responseJson) => {
+        setMember({ ...member, memberId: responseJson.id });
+        // this.setState({ memberId: responseJson.id}, () => {this.getProductList()});
+      })
+      .catch((error) => {
+        console.log(error);
+        // this.setState({spinner: false});
+        // this.dropDownAlertRef.alertWithType('error', 'Error', error.message);
+      });
+  }
+  console.log("memberId:"+member.memberId)
   const renderMainItem = ({ item, index }) => (
     <View key={index} style={styles.itemContainer}>
       <Text style={styles.mainHeading}>{item.mainHeading}</Text>
@@ -118,16 +155,16 @@ export default function HomeScreen({navigation}) {
   );
 
   const renderSubItem = ({ item, index }) => (
-    <View >
-    <View key={index} style={styles.dataContainer}>
-      <View style={{ width: '30%'}}>
-          <Image source={item.image} style={styles.image}/>
-      </View>
-      <View style={styles.textContainer}>
+    <View>
+      <View key={index} style={styles.dataContainer}>
+        <View style={{ width: "30%" }}>
+          <Image source={item.image} style={styles.image} />
+        </View>
+        <View style={styles.textContainer}>
           <Text style={styles.heading}>{item.heading}</Text>
           <Text style={styles.description}>{item.description}</Text>
+        </View>
       </View>
-    </View>
     </View>
   );
   return (
@@ -151,11 +188,11 @@ export default function HomeScreen({navigation}) {
     })
 }
     </ScrollView> */}
-    <FlatList
-      data={mainData}
-      renderItem={renderMainItem}
-      keyExtractor={(item, index) => index.toString()}
-    />
+      <FlatList
+        data={mainData}
+        renderItem={renderMainItem}
+        keyExtractor={(item, index) => index.toString()}
+      />
     </View>
   );
 }
@@ -177,7 +214,7 @@ const styles = StyleSheet.create({
   // },
   container: {
     backgroundColor: "white",
-    paddingBottom:100
+    paddingBottom: 100,
   },
   text2: {
     color: "grey",
@@ -209,7 +246,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 4,
     marginHorizontal: 16,
-    borderRadius:5
+    borderRadius: 5,
   },
   image: {
     width: 100,
@@ -235,16 +272,16 @@ const styles = StyleSheet.create({
     color: "#555",
   },
   searchBar: {
-    alignSelf:'center',
-    width:340,
-    marginHorizontal:10,
-    justifyContent:'space-around',
-    alignItems:'center',
-    flexDirection:'row',
+    alignSelf: "center",
+    width: 340,
+    marginHorizontal: 10,
+    justifyContent: "space-around",
+    alignItems: "center",
+    flexDirection: "row",
     // borderWidth: 1,
     borderRadius: 10,
-    padding:0,
-    backgroundColor:'grey',
+    padding: 0,
+    backgroundColor: "grey",
     // marginBottom:10
   },
 });

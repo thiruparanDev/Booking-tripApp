@@ -15,23 +15,9 @@ import { Picker } from "@react-native-picker/picker";
 import React, { useEffect, useState } from "react";
 import {APP_URL} from '../constants/App';
 import RNFetchBlob from 'rn-fetch-blob';
-// import {apiCall} from "./Components/ApiCall";
+import {apiCall} from "../Utils";
 
 
-// const apiCall = (url,method,obj)=>{
-//   fetch(APP_URL+url,{
-//     method:method,
-//     headers:{
-//       // 'Authorization:"Bearer access-token",
-//       'Accept':'application/json',
-//       'Content-Type':'application/json',
-//     },
-//     body:JSON.stringify(obj)
-//   }).then(response => response.json())
-//   .then((responseJson)=>{
-//     console.log(responseJson)
-//   }).catch(error => console.error(error));
-// }
 
 
 const options = [
@@ -42,6 +28,9 @@ const options = [
 ];
 
 function RegisterScreen({navigation}) {
+  useEffect(()=>{
+    getData()
+  })
   // useEffect(()=>{}
   //   getData();
   // },[]);
@@ -55,6 +44,7 @@ function RegisterScreen({navigation}) {
   const [mobileNo,setMobileNo] = useState("")
   const [addressLine1,setAddressLine1] = useState("")
   const [addressLine2,setAddressLine2] = useState("")
+  // const [countries, countrie]
   // const [id,setId]
   // const [code1,setCode1] = useState("")
   // const [code2,setCode2] = useState("")
@@ -114,59 +104,41 @@ else {
         }
     });
 }
-// const userDetails = 
-//   {
-//     email:email,
-//     password:password,
-//     // name:yourName,
-//     phone:mobileNo,
-//     country_calling_code:"0094",
-//     firebase_user_id:""
-//   }
+const userDetails = 
+  {
+    email:email,
+    password:password,
+    // name:yourName,
+    phone:mobileNo,
+    country_calling_code:"0094",
+    firebase_user_id:""
+  }
 
-// const createUserDetails=(userId)=>{
-//   // console.log(userId)
-//   apiCall('register','POST',{...userDetails, firebase_user_id:userId})
-
-function createUserDetails(userID){
-  fetch(APP_URL+'register',{
-    method:'POST',
-    headers:{
-      // 'Authorization:"Bearer access-token",
-      'Accept':'application/json',
-      'Content-Type':'application/json',
-    },
-    body:JSON.stringify({
-      email:email,
-      password:password,
-      // name:yourName,
-      phone:mobileNo,
-      country_calling_code:"0094",
-      firebase_user_id:userID
-    })
-  }).then(response => response.json())
-  .then((responseJson) => {
-          console.log(JSON.stringify(responseJson));
-          if(responseJson[0]=="saved"){
-             global.id = responseJson[1];
-             global.name = responseJson[2];
-            // setId(responseJson[1])
-            // setName(responseJson[2])
-              alert("Registered successfully. Welcome to TripToster")
-              setTimeout(()=>{
-                  navigation.navigate("MainBottomNavigator");
-              }, 2000);
-          } else {
-            console.log("Not successful")
+const createUserDetails=(userId)=>{
+  // console.log(userId)
+  apiCall('register','POST',{...userDetails, firebase_user_id:userId}).then((responseJson) => {
+              console.log(JSON.stringify(responseJson));
+              if(responseJson[0]=="saved"){
+                 global.id = responseJson[1];
+                 global.name = responseJson[2];
+                // setId(responseJson[1])
+                // setName(responseJson[2])
+                  alert("Registered successfully. Welcome to TripToster")
+                  setTimeout(()=>{
+                      navigation.navigate("MainBottomNavigator");
+                  }, 2000);
+              } else {
+                console.log("Not successful")
+                  // this.showError("error..!");
+              }
+          })
+          .catch((error) => {
+              console.log(error);
               // this.showError("error..!");
+          });
           }
-      })
-      .catch((error) => {
-          console.log(error);
-          // this.showError("error..!");
-      });
-      }
-// }
+
+}
 
 // function createUserDetails(userID){
 //   RNFetchBlob.fetch('POST', APP_URL+'register', {
@@ -208,7 +180,7 @@ function createUserDetails(userID){
 //       // this.showError("error..!");
 //   });
 //   }
-}
+// }
 // function getData(){
 //   fetch(APP_URL+'data',{
 //     method:'GET',
@@ -229,6 +201,27 @@ function createUserDetails(userID){
 //     console.log(responseJson)
 //   }).catch(error => console.error(error));
 // }
+
+function getData(){
+  fetch(APP_URL+'getCountryList',{
+    method:'GET',
+    headers:{
+      // 'Authorization:"Bearer access-token",
+      'Accept':'application/json',
+      'Content-Type':'application/json',
+    },
+    // body:JSON.stringify({
+    //   email:email,
+    //   // password:password,
+    //   name:yourName,
+    //   mobile_no:mobileNo,
+    //   firebase_user_id:userID
+    // })
+  }).then(response => response.json())
+  .then((responseJson)=>{
+    console.log(responseJson)
+  }).catch(error => console.error(error));
+}
   return (
     <View style={styles.viewStyle}>
       <ScrollView>
@@ -319,11 +312,12 @@ function createUserDetails(userID){
           <Text style={styles.pressableText}>Confirm</Text>
         </TouchableOpacity>
         <Text style={styles.textStyle}>Create password</Text>
-        <TextInput style={styles.textInputStyle} placeholder="Password" onChangeText={setPassword} />
+        <TextInput style={styles.textInputStyle} placeholder="Password" onChangeText={setPassword} secureTextEntry = {true}/>
         <TextInput
           style={styles.textInputStyle}
           placeholder="Confirm password"
           onChangeText={setConfirmPassword}
+          secureTextEntry = {true}
         />
         <TouchableOpacity
           // activeOpacity={0.6}

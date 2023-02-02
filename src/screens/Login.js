@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { authentication } from "../config/db";
 // import  firebase  from 'firebase/compat';
 import { signInWithEmailAndPassword, auth } from "firebase/auth";
+import {APP_URL} from '../constants/App';
+import { apiCall } from "../Utils";
 
 import {
   StyleSheet,
@@ -44,7 +46,7 @@ function LoginScreen({ navigation }) {
     } else {
       signInWithEmailAndPassword(authentication, email, password)
         .then((userCredential) => {
-          //setUserGlobalID(userCredential);
+          setUserGlobalID(userCredential);
           alert("Welcome to Triptoster");
         })
         .catch((error) => {
@@ -62,30 +64,47 @@ function LoginScreen({ navigation }) {
     }
   };
   function setUserGlobalID(userCredential){
+    apiCall('getCustomerId','POST',{firebase_user_id:userCredential.user.uid}).then((responseJson) => {
+      console.log("user_id = "+responseJson.id);
+      global.memberId = responseJson.id;
+      global.memberName = responseJson.name;
+      // global.member_first_name = responseJson.first_name;
+      // global.member_last_name = responseJson.last_name;
+      // global.member_profile_photo = responseJson.profile_photo;
+      navigation.navigate("MainBottomNavigator");
+      // console.log(memberId, memberName)
 
-    fetch(APP_URL + 'get_customer_id', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            firebase_user_id: userCredential.user.uid,
-        })
-    })
-    .then(response => response.json())      
-    .then((responseJson) => {
-        console.log("user_id = "+responseJson.id);
-        global.member_id = responseJson.id;
-        global.member_first_name = responseJson.first_name;
-        global.member_last_name = responseJson.last_name;
-        global.member_profile_photo = responseJson.profile_photo;
-        // this.props.navigation.navigate("MainBottomNavigator");
-    })
-    .catch((error) => {
-        console.log(error);
-        // this.showError(error.code);
-    });
+  })
+  .catch((error) => {
+      console.log(error);
+      // this.showError(error.code);
+  });
+    // fetch(APP_URL + 'getCustomerId', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //         firebase_user_id: userCredential.user.uid,
+    //     })
+    // })
+    // .then(response => response.json())      
+    // .then((responseJson) => {
+    //     console.log("user_id = "+responseJson.id);
+    //     global.memberId = responseJson.id;
+    //     global.memberName = responseJson.name;
+    //     // global.member_first_name = responseJson.first_name;
+    //     // global.member_last_name = responseJson.last_name;
+    //     // global.member_profile_photo = responseJson.profile_photo;
+    //     navigation.navigate("MainBottomNavigator");
+    //     // console.log(memberId, memberName)
+
+    // })
+    // .catch((error) => {
+    //     console.log(error);
+    //     // this.showError(error.code);
+    // });
 
 }
 
@@ -102,7 +121,7 @@ function LoginScreen({ navigation }) {
           placeholder="Username or Mobile Number"
           onChangeText={setEmail}
         />
-        <TextInput style={styles.textInputStyle} placeholder="Password" onChangeText={setPassword}/>
+        <TextInput style={styles.textInputStyle} placeholder="Password" onChangeText={setPassword} secureTextEntry = {true}/>
 
         <View style={styles.view2Style}>
           <TouchableOpacity

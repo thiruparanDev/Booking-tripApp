@@ -12,8 +12,9 @@ export const apiCall = (url,method,obj)=>{
           },
           body:JSON.stringify(obj)
         }).then(response => response.json())
-        .then((responseJson)=>{
-          console.log(responseJson)
-        }).catch(error => console.error(error));
+        // .then((responseJson)=>{
+        //   console.log(responseJson)
+        // })
+        .catch(error => console.error(error));
       }
 // }
