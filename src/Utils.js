@@ -1,7 +1,7 @@
 import {APP_URL} from './constants/App';
 
-export const apiCall = (url,method,obj)=>{
-    const response = fetch(APP_URL+url,{
+export const apiCall = async (url,method,obj)=>{
+    const response = await fetch(APP_URL+url,{
       method:method,
       headers:{
         // 'Authorization:"Bearer access-token",
