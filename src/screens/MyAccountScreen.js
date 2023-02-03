@@ -12,25 +12,19 @@ import { authentication } from "../config/db";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Picker } from "@react-native-picker/picker";
 import React, { useEffect, useState } from "react";
-import { APP_URL } from "../constants/App";
 import RNFetchBlob from "rn-fetch-blob";
 import { apiCall } from "../Utils";
-import AntDesign from "react-native-vector-icons/AntDesign";
-
-// const options = [
-//   { country: "Option 1", id: "option1" },
-//   { country: "Option 1", id: "option1" },
-// ];
+import { onAuthStateChanged, updateEmail, updatePassword } from "firebase/auth";
+// import { authentication } from "../config/db";
 
 function RegisterScreen({ navigation }) {
   useEffect(() => {
     getCountries();
+    getCustomerDetails()
   }, []);
-  // useEffect(()=>{}
-  //   getData();
-  // },[]);
-
+  const [userId, setUserId]=useState("")
   const [selectedCountry, setselectedCountry] = useState("option1");
+  const [newPassword,setNewPassword]=useState("")
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [userName, setUserName] = useState("");
@@ -41,33 +35,27 @@ function RegisterScreen({ navigation }) {
   const [addressLine2, setAddressLine2] = useState("");
   const [countries, setCountries] = useState();
   const [countryCallingCode,setCountryCallingCode]=useState("")
-  // const [id,setId]
-  // const [code1,setCode1] = useState("")
-  // const [code2,setCode2] = useState("")
-  // const [code3,setCode3] = useState("")
-  // const [code4,setCode4] = useState("")
-  const [id, setId] = useState("");
-  const [name, setName] = useState("");
+
   const handleSubmit = () => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (reg.test(email) == false) {
       alert("Invalid Email Address..!");
       return false;
-    } else if (userName == "") {
-      alert("Please enter a user name..!");
-      return false;
-    } else if (password == "") {
-      alert("Please enter a password..!");
-      return false;
-    } else if (password.length < 8) {
-      alert("Password must be at least 8 characters long..!");
-      return false;
-    } else if (confirmPassword == "") {
-      alert("Please enter a confirm password..!");
-      return false;
-    } else if (password != confirmPassword) {
-      alert("Password and confirm password not match..!");
-      return false;
+    // } else if (userName == "") {
+    //   alert("Please enter a user name..!");
+    //   return false;
+    // } else if (password == "") {
+    //   alert("Please enter a password..!");
+    //   return false;
+    // } else if (password.length < 8) {
+    //   alert("Password must be at least 8 characters long..!");
+    //   return false;
+    // } else if (confirmPassword == "") {
+    //   alert("Please enter a confirm password..!");
+    //   return false;
+    // } else if (password != confirmPassword) {
+    //   alert("Password and confirm password not match..!");
+    //   return false;
     } else if (yourName == "") {
       alert("Please enter a Name..!");
       return false;
@@ -83,58 +71,96 @@ function RegisterScreen({ navigation }) {
     } else if (isNaN(mobileNo)) {
       alert("Please enter a number");
     } else {
-      createUserWithEmailAndPassword(authentication, email, password)
-        .then((userCredential) => {
-          // console.log(userCredential.user.uid);
-          createUserDetails(userCredential.user.uid);
-        })
-        .catch((error) => {
-          if (error.code == "auth/invalid-email") {
-            alert("Invalid Email Address..!");
-          }
-          if (error.code == "auth/email-already-in-use") {
-            alert("Email already in use..!");
-          } else {
-            alert(error);
-          }
-        });
+      updateFireBase()
     }
-    
-    const createUserDetails = (userId) => {
-      const userDetails = {
-        email: email,
-        password: password,
-        // name:yourName,
-        phone: mobileNo,
-        country_calling_code: "0094",
-        firebase_user_id: "",
-      };
+
+    // const createUserDetails = (userId) => {
+    //   const userDetails = {
+    //     email: email,
+    //     password: password,
+    //     // name:yourName,
+    //     phone: mobileNo,
+    //     country_calling_code: "0094",
+    //     firebase_user_id: "",
+    //   };
       // console.log(userId)
-      apiCall("register", "POST", { ...userDetails, firebase_user_id: userId })
-        .then((responseJson) => {
-          console.log(JSON.stringify(responseJson));
-          if (responseJson[0] == "saved") {
-            global.id = responseJson[1];
-            global.name = responseJson[2];
-            // setId(responseJson[1])
-            // setName(responseJson[2])
-            alert("Registered successfully. Welcome to TripToster");
-            setTimeout(() => {
-              navigation.navigate("MainBottomNavigator");
-            }, 2000);
-          } else {
-            console.log("Not successful");
-            // this.showError("error..!");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          // this.showError("error..!");
-        });
-    };
+      // apiCall("register", "POST", { ...userDetails, firebase_user_id: userId })
+      //   .then((responseJson) => {
+      //     console.log(JSON.stringify(responseJson));
+      //     if (responseJson[0] == "saved") {
+      //       global.id = responseJson[1];
+      //       global.name = responseJson[2];
+      //       // setId(responseJson[1])
+      //       // setName(responseJson[2])
+      //       alert("Registered successfully. Welcome to TripToster");
+      //       setTimeout(() => {
+      //         navigation.navigate("MainBottomNavigator");
+      //       }, 2000);
+      //     } else {
+      //       console.log("Not successful");
+      //       // this.showError("error..!");
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //     // this.showError("error..!");
+      //   });
+    // };
   };
+  function updateFireBase(){
+    onAuthStateChanged(authentication, (user) => {
+        if (user) {
+          updateEmail(user,email).then(() => {
+            updatePassword(user, newPassword).then(() => {
+          }).catch((error) => {
+              console.log(error);
+              alert(error)
+              // this.showError(error.message);
+          });
+            // if (password!==""&&){
 
+            // }
+            updateUserDetails();
+          }).catch((error) => {
+              console.log("hi")
+                console.log(error);
+                // this.showError(error.message);
+            });
 
+        } else {
+          console.log(error);
+          alert("user not found")
+            // this.showError("User not found ..!");    
+        }
+  
+    });
+}
+function updateUserDetails(){
+  apiCall('updateCustomerDetails','POST',{     
+    user_id:userId,   
+    email: email,
+    password: newPassword,
+    name:yourName,
+    phone: mobileNo,
+    country_calling_code: countryCallingCode,
+    address:addressLine1+" "+addressLine2}).then((responseJson)=>console.log(responseJson))
+}
+  function getCustomerDetails(){
+    apiCall('getCustomerDetails','POST',{user_id:global.memberId})
+    .then(responseJson=>{
+      console.log(responseJson)
+      setCountryCallingCode(responseJson.country_calling_code)
+      // setUserName(responseJson.)
+      setEmail(responseJson.email)
+      setYourName(responseJson.name)
+      setMobileNo(responseJson.phone)
+      setAddressLine1(responseJson.address)
+      setAddressLine2(responseJson.address)
+      setUserId(responseJson.id)
+      setPassword(responseJson.password)
+      // setselectedCountry()
+    })      .catch((error) => console.error(error));
+  }
   function setCountry(itemValue) {
     setselectedCountry(itemValue);
     setCountryCallingCode(itemValue)
@@ -142,12 +168,12 @@ function RegisterScreen({ navigation }) {
   function getCountries() {
     apiCall("getCountryList", "GET")
       .then((responseJson) => {
-        console.log(responseJson);
+        // console.log(responseJson);
         setCountries(responseJson);
       })
       .catch((error) => console.error(error));
   }
-  console.log(countries);
+  console.log(newPassword)
   return (
     <View style={styles.viewStyle}>
       <ScrollView>
@@ -160,30 +186,34 @@ function RegisterScreen({ navigation }) {
           style={styles.image}
         />
         <Text style={[styles.textStyle, { textAlign: "center" }]}>Profile</Text>
-        <TextInput
+        {/* <TextInput
           style={styles.textInputStyle}
           placeholder="User Name"
           onChangeText={setUserName}
-        />
+        /> */}
         <TextInput
           style={styles.textInputStyle}
           placeholder="Email"
           onChangeText={setEmail}
+          value = {email}
         />
         <TextInput
           style={styles.textInputStyle}
           placeholder="Your Name"
           onChangeText={setYourName}
+          value = {yourName}
         />
         <TextInput
           style={styles.textInputStyle}
           placeholder="Address Line 1"
           onChangeText={setAddressLine1}
+          value = {addressLine1}
         />
         <TextInput
           style={styles.textInputStyle}
           placeholder="Address Line 2"
           onChangeText={setAddressLine2}
+          value = {addressLine2}
         />
         {/* <TextInput style={styles.textInputStyle} placeholder="Address Line 2" onChangeText={value=>setObj({...obj,email:value})}/> */}
         <View style={styles.textView}>
@@ -218,8 +248,9 @@ function RegisterScreen({ navigation }) {
           <TextInput
             style={styles.mobileTextInputStyle}
             placeholder="Mobile No"
-            plca
             onChangeText={setMobileNo}
+            autocomplete="off"
+            value={`${mobileNo}`}
           />
         </View>
         <TouchableOpacity
@@ -272,16 +303,22 @@ function RegisterScreen({ navigation }) {
         >
           <Text style={styles.pressableText}>Confirm</Text>
         </TouchableOpacity>
-        <Text style={styles.textStyle}>Create password</Text>
+        <Text style={styles.textStyle}>Change my password</Text>
         <TextInput
           style={styles.textInputStyle}
-          placeholder="Password"
+          placeholder="Old password"
           onChangeText={setPassword}
+          secureTextEntry={true}
+        />
+                <TextInput
+          style={styles.textInputStyle}
+          placeholder="New password"
+          onChangeText={setNewPassword}
           secureTextEntry={true}
         />
         <TextInput
           style={styles.textInputStyle}
-          placeholder="Confirm password"
+          placeholder="Confirm new password"
           onChangeText={setConfirmPassword}
           secureTextEntry={true}
         />

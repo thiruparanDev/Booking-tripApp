@@ -128,10 +128,10 @@ export default function HomeScreen({ navigation }) {
 
 
 
-  async function getMemberId() {
+  function getMemberId() {
     const auth = getAuth();
     const firebaseUserID = auth.currentUser.uid;
-    await apiCall('getCustomerId','POST',{firebase_user_id:firebaseUserID})
+    apiCall('getCustomerId','POST',{firebase_user_id:firebaseUserID})
       .then((responseJson) => {
         setMember({ ...member, memberId: responseJson.id });
         // this.setState({ memberId: responseJson.id}, () => {this.getProductList()});

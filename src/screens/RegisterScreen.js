@@ -40,6 +40,7 @@ function RegisterScreen({ navigation }) {
   const [addressLine2, setAddressLine2] = useState("");
   const [countries, setCountries] = useState();
   const [countryCallingCode,setCountryCallingCode]=useState("")
+  const [countryId,setCountryId]=useState("")
   // const [id,setId]
   // const [code1,setCode1] = useState("")
   // const [code2,setCode2] = useState("")
@@ -52,9 +53,9 @@ function RegisterScreen({ navigation }) {
     if (reg.test(email) == false) {
       alert("Invalid Email Address..!");
       return false;
-    } else if (userName == "") {
-      alert("Please enter a user name..!");
-      return false;
+    // } else if (userName == "") {
+    //   alert("Please enter a user name..!");
+    //   return false;
     } else if (password == "") {
       alert("Please enter a password..!");
       return false;
@@ -114,8 +115,8 @@ function RegisterScreen({ navigation }) {
         .then((responseJson) => {
           console.log(JSON.stringify(responseJson));
           if (responseJson[0] == "saved") {
-            global.id = responseJson[1];
-            global.name = responseJson[2];
+            global.memberId = responseJson[1];
+            global.memberName = responseJson[2];
             // setId(responseJson[1])
             // setName(responseJson[2])
             alert("Registered successfully. Welcome to TripToster");
@@ -198,6 +199,7 @@ function RegisterScreen({ navigation }) {
   function setCountry(itemValue) {
     setselectedCountry(itemValue);
     setCountryCallingCode(itemValue)
+    // setCountryId(itemValue)
   }
   function getCountries() {
     apiCall("getCountryList", "GET")
@@ -210,7 +212,6 @@ function RegisterScreen({ navigation }) {
       })
       .catch((error) => console.error(error));
   }
-  console.log(countries);
   return (
     <View style={styles.viewStyle}>
       <ScrollView>
@@ -223,11 +224,11 @@ function RegisterScreen({ navigation }) {
           style={styles.image}
         />
         <Text style={[styles.textStyle, { textAlign: "center" }]}>Profile</Text>
-        <TextInput
+        {/* <TextInput
           style={styles.textInputStyle}
           placeholder="User Name"
           onChangeText={setUserName}
-        />
+        /> */}
         <TextInput
           style={styles.textInputStyle}
           placeholder="Email"

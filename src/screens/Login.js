@@ -15,11 +15,13 @@ import {
   TouchableHighlight,
   Image,
   TouchableOpacity,
+  KeyboardAvoidingView,
 } from "react-native";
 // import {TouchableOpacity} from 'react-native-gesture-handler'
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
+import { ScrollView } from "react-native-gesture-handler";
 
 function LoginScreen({ navigation }) {
   // const [loginCredential, setLoginCredential] = useState({
@@ -110,6 +112,9 @@ function LoginScreen({ navigation }) {
 
   
   return (
+    <>
+    {/* <ListView></ListView> */}
+      <ScrollView >
     <View style={styles.viewStyle}>
       <Image
         style={styles.logo}
@@ -164,17 +169,31 @@ function LoginScreen({ navigation }) {
         </View>
       </View>
     </View>
+    </ScrollView>
+    </>
   );
 }
 const styles = StyleSheet.create({
+  scrollViewStyle:{
+    flex: 1,
+    // width: "100%",
+    // height: 600,
+    // alignItems: 'center',
+    // backgroundColor:"blue"
+  },
   viewStyle: {
+
+    paddingBottom:320,
+    // marginBottom:100,
+    // width: "100%",
+    // height: "100%",
     flex: 1,
     justifyContent: "center",
     backgroundColor: "white",
     // alignItems: 'center',
   },
   view1Style: {
-    top: 120,
+    top: "70%",
   },
   // textStyle: {
   //   alignItems:'center',
@@ -215,9 +234,9 @@ const styles = StyleSheet.create({
   },
   logo: {
     // flex:3,
-    height:'35%',
+    height:'65%',
     position: "absolute",
-    top: '4%',
+    top: '7%',
     // height:40
     alignSelf: "center",
   },
